@@ -5,14 +5,29 @@ var Greeter = React.createClass({
       message: 'Greetings from your friendly React.js component!'
     }
   },
+  getInitialState: function () {
+    return {
+      name: this.props.name
+    };
+  },
   onButtonClick: function(e) {
     e.preventDefault();
 
-    var name = this.refs.name.value;
-    alert(name);
+    var nameRef = this.refs.name;
+
+    var name = nameRef.value;
+    nameRef.value = '';
+
+    if (typeof name === 'string' && name.length > 0) {
+      this.setState({
+        name: name
+      });
+    } else { alert('Please enter a valid name!'); }
+
+
   },
   render: function () {
-    var name = this.props.name;
+    var name = this.state.name;
     var message = this.props.message;
 
     return (
@@ -30,6 +45,6 @@ var Greeter = React.createClass({
 });
 
 ReactDOM.render(
-  <Greeter name="Benny"/>,
+  <Greeter/>,
   document.getElementById('app')
 );

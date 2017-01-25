@@ -17,8 +17,7 @@ var GreeterForm = React.createClass({
 
     var name = this.refs.name.value;
     var message = this.refs.message.value;
-    console.log(message);
-
+  
     if (name.length > 0 && message.length > 0) {
       this.refs.name.value = '';
       this.refs.message.value = '';
@@ -55,11 +54,6 @@ var Greeter = React.createClass({
       message: message
     });
   },
-  handleNewMessage: function(message) {
-    this.setState({
-      message: message
-    });
-  },
   render: function () {
     var name = this.state.name;
     var message = this.state.message;
@@ -67,7 +61,7 @@ var Greeter = React.createClass({
     return (
       <div>
         <GreeterMessage name={name} message={message}/>
-        <GreeterForm onNewInput={this.handleNewInput} onNewName={this.handleNewName} onNewMessage={this.handleNewMessage}/>
+        <GreeterForm onNewInput={this.handleNewInput} />
       </div>
     );
   }
